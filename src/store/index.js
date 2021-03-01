@@ -1,5 +1,4 @@
-import { connect } from "react-redux";
-import { createStore } from "redux";
+ import { createStore } from "redux";
 
 function reducer(state = {counter: 0},  action){
     const {counter} = state;
@@ -9,7 +8,7 @@ function reducer(state = {counter: 0},  action){
      case "Decreament":
         return state = {counter: counter-1}
         case "Reset":
-    return state = 0
+       return state = {counter: 0}
  }
 
  return state;
