@@ -1,22 +1,33 @@
-import {connect} from 'react-redux';
+import './style.css'
+import {connect} from 'react-redux'
 
-import {Increament, Decreament, Reset} from "./action"
+function Todo(props) {
+    const {dispatch} = props
 
-function Todo(props){
-    const {counter, dispatch}  = props;
-    return <>
-    <h1>{counter}</h1>
-    <button onClick = {() => dispatch(Increament())}>Increament</button>
-    <button onClick = {() => dispatch(Decreament())}>Decreament</button>
-    <button onClick = {() => dispatch(Reset())}>Reset</button>
-</>
+function addTask() {
+    dispatch({
+        type: "addTask",
+        playload: {
+            des: 'Hello'
+        }
+    })
+} 
+
+const {tasks}  = props
+    return  <>
+    <h1 className = "text-center">Todo List</h1>
+    <ul>
+      {tasks.map((task) => <li>{task.des}</li>)}
+    </ul>
+<button onClick = {() => addTask()}>Click To Add Task</button>
+    </>
 }
 
 
-function getCounter(state){
+function getTasks(state) {
     return {
-       counter: state.counter
+        tasks: state
     }
 }
 
-export default connect(getCounter)(Todo);
+export default connect(getTasks)(Todo)

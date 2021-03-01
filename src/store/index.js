@@ -1,20 +1,22 @@
- import { createStore } from "redux";
-
-function reducer(state = {counter: 0},  action){
-    const {counter} = state;
+ import {createStore} from 'redux';
+let id  = 0
+function reducer(state = [], action) {
     switch(action.type){
-     case "Increament":
-     return state = {counter: counter+1}
-     case "Decreament":
-        return state = {counter: counter-1}
-        case "Reset":
-       return state = {counter: 0}
- }
+        case 'addTask':
+            return [...state, {
+                id: id+1,
+                des: action.playload.des,
+                isCompleted: false
+            }]
+         case "removeTask": 
+         let idRemove = action.playload.id
+         return state.filter((task) => task.id !==idRemove)
+    }
+    id++
+    return state
+}
 
- return state;
-} 
 
+const store = createStore(reducer);
 
-const store = createStore(reducer)
-
-export default store
+export default store;
