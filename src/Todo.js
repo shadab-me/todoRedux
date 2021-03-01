@@ -1,6 +1,23 @@
+import {connect} from 'react-redux';
 function Todo(props){
-    return <h1>Todo</h1>
+    const {counter, dispatch}  = props;
+
+function Increament(){
+      dispatch({
+          type: 'Increament'
+      })
+}
+    return <>
+    <h1>{counter}</h1>
+    <button onClick = {() => Increament()}>Increament</button>
+</>
 }
 
 
-export default Todo
+function getCounter(state){
+    return {
+       counter: state.counter
+    }
+}
+
+export default connect(getCounter)(Todo);
